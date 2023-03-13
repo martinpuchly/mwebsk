@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Najnovšie články</h2>
+            {% for post in posts %}
+                <article>
+                    <header>
+                        <h3>{{ post.title }}</h3>
+                    </header>
+                    <main class="text-justify">
+                        {{ post.intro|safe }}
+                    </main>
+                    <footer class="float-end">
+                        {% if post.body %}
+                            <a href="{% url 'post.show' post.slug %}"> zobraziť celý článok</a>
+                        {% endif %}           
+                    </footer>
+                </article>
+                <br clear="all">
+                <hr>
+                {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <h2 class="h2">Novinky:</h2>
+            {% for qicknew in qicknews %}
+                {{ qicknew }}
+            <hr>
+                {% endfor %}
+                
+        </div>
+    </div>
+{% endblock %}

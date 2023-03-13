@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} | {{ post.title|title }} {% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <div class="float-end fst-italic text-secondary">
+
+        </div>
+        <h2>{{ post.title|title }}</h2>
+    </header>
+    <main>
+        {{ post.intro|safe }}
+        {{ post.body|safe }}
+    </main>
+
+    <footer>
+        <div class="float-start fst-italic mt-3 text-secondary">                 
+            {% if post.tags.count > 0 %}
+                <span>Tagy: </span>
+                {% for tag in post.tags.all %}
+                        <a href="{% url 'posts.tag' tag.slug %}">{{ tag.title }}</a><span>, </span>
+                {% endfor %}
+                <br>
+            {% endif %}           
+            publikované {{ post.updated_at }} autorom {{ post.user.username }}
+        </div>
+    </footer>
+</article>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} | {{"kontakt"|title}} {% endblock %}
+
+
+{% block content %}
+{% load bootstrap5 %}
+
+<h1>Kontakt</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+            <div class="row">
+              <div class="col align-self-center">
+                <button class="btn btn-primary">Odoslať</button>
+                </div>
+            </div>
+    </form>
+{% endblock %}

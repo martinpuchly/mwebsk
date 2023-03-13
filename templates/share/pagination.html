@@ -1,0 +1,17 @@
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?stranka=1">&laquo;</a>
+            <a href="?stranka={{ page_obj.previous_page_number }}"><</a>
+        {% endif %}
+
+        <span class="current pagination_info">
+            Stránka {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?stranka={{ page_obj.next_page_number }}">></a>
+            <a href="?stranka={{ page_obj.paginator.num_pages }}">&raquo;</a>
+        {% endif %}
+    </span>
+</div>
