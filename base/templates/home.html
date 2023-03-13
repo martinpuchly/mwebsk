@@ -26,7 +26,12 @@
         <div class="col-md-4">
             <h2 class="h2">Novinky:</h2>
             {% for qicknew in qicknews %}
-                {{ qicknew }}
+                <div class="fs-6">
+                    <div class="fst-italic text-decoration-underline">
+                        {{ qicknew.created_at }}:
+                    </div>
+                    {{ qicknew }}
+                </div>    
             <hr>
                 {% endfor %}
                 
