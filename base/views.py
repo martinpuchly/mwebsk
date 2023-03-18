@@ -7,7 +7,7 @@ from django.db.models import Q
 
 def home_view(request):
     return render(request, "home.html", {
-        'qicknews': QuickNew.objects.all()[:5],
+        'qicknews': QuickNew.objects.order_by('-created_at').all()[:5],
         'posts': Post.objects.order_by('-created_at').filter(Q(publised__exact=1) | Q(publised_at__lte=datetime.now())).all()[:3]
     })
 

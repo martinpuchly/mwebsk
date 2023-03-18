@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <h2>Najnovšie články</h2>
             {% for post in posts %}
                 <article>
@@ -23,14 +23,13 @@
                 <hr>
                 {% endfor %}
         </div>
-        <div class="col-md-4">
-            <h2 class="h2">Novinky:</h2>
+        <div class="col-md-3">
+            <h3 class="h3">Novinky:</h3>
             {% for qicknew in qicknews %}
-                <div class="fs-6">
-                    <div class="fst-italic text-decoration-underline">
-                        {{ qicknew.created_at }}:
-                    </div>
-                    {{ qicknew }}
+                <div style="font-size: .9em">
+                    <span class="fw-bold">{{ qicknew.title }}: </span>
+                    {{ qicknew.text }}
+                    <p class="card-text text-end fst-italic"><small class="text-muted">{{ qicknew.created_at }}</small></p>
                 </div>    
             <hr>
                 {% endfor %}
