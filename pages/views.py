@@ -3,6 +3,9 @@ from .models import Page, Post
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
 from datetime import datetime
+from django.core.paginator import Paginator
+
+
 def page_show(request, page_slug):
     page = get_object_or_404(Page, slug=page_slug)
     return render(request, "pages/show.html", {
@@ -11,10 +14,19 @@ def page_show(request, page_slug):
 
 
 def post_index(request):
-    posts = Post.objects.order_by('-created_at').filter(Q(publised__exact=1) | Q(publised_at__lte=datetime.now())).all()[:5]
+    posts_list = Post.objects.order_by('-created_at').filter(Q(publised__exact=1) | Q(publised_at__lte=datetime.now())).all()[:5]
+    
+    paginator = Paginator(posts_list, 5) # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     return render(request, "posts/index.html", {
-        'posts': posts
+        'posts': page_obj
     })
+
+
+
+
 
 def post_tag_index(request, tag):
     posts = Post.objects.filter(Q(publised__exact=1) | Q(publised_at__lte=datetime.now())).filter(tags__slug=tag).all()[:5]
